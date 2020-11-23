@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PartDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BOMPart">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PartId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Part" Relationship="Self.FK__BOMPart__PartId__3B75D760" FromRole="BOMPart" ToRole="Parts" />
+  </EntityType>
+  <EntityType Name="Catergoery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Parts" Relationship="Self.FK__Parts__Catergoer__38996AB5" FromRole="Catergoery" ToRole="Parts" />
+  </EntityType>
+  <EntityType Name="Part">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PartNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CatergoeryId" Type="Int32" />
+    <Property Name="Supplier" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BOMParts" Relationship="Self.FK__BOMPart__PartId__3B75D760" FromRole="Parts" ToRole="BOMPart" />
+    <NavigationProperty Name="Catergoery" Relationship="Self.FK__Parts__Catergoer__38996AB5" FromRole="Parts" ToRole="Catergoery" />
+  </EntityType>
+  <Association Name="FK__BOMPart__PartId__3B75D760">
+    <End Role="Parts" Type="Self.Part" Multiplicity="1" />
+    <End Role="BOMPart" Type="Self.BOMPart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BOMPart">
+        <PropertyRef Name="PartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Parts__Catergoer__38996AB5">
+    <End Role="Catergoery" Type="Self.Catergoery" Multiplicity="0..1" />
+    <End Role="Parts" Type="Self.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catergoery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Parts">
+        <PropertyRef Name="CatergoeryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PartDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BOMParts" EntityType="Self.BOMPart" />
+    <EntitySet Name="Catergoeries" EntityType="Self.Catergoery" />
+    <EntitySet Name="Parts" EntityType="Self.Part" />
+    <AssociationSet Name="FK__BOMPart__PartId__3B75D760" Association="Self.FK__BOMPart__PartId__3B75D760">
+      <End Role="Parts" EntitySet="Parts" />
+      <End Role="BOMPart" EntitySet="BOMParts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Parts__Catergoer__38996AB5" Association="Self.FK__Parts__Catergoer__38996AB5">
+      <End Role="Catergoery" EntitySet="Catergoeries" />
+      <End Role="Parts" EntitySet="Parts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

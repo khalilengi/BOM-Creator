@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PartDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BOMPart">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="PartId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Catergoery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Parts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="PartNumber" Type="nvarchar" MaxLength="250" />
+    <Property Name="Link" Type="nvarchar" MaxLength="250" />
+    <Property Name="Price" Type="nvarchar" MaxLength="250" />
+    <Property Name="CatergoeryId" Type="int" />
+    <Property Name="Supplier" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__BOMPart__PartId__3B75D760">
+    <End Role="Parts" Type="Self.Parts" Multiplicity="1" />
+    <End Role="BOMPart" Type="Self.BOMPart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BOMPart">
+        <PropertyRef Name="PartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Parts__Catergoer__38996AB5">
+    <End Role="Catergoery" Type="Self.Catergoery" Multiplicity="0..1" />
+    <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catergoery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Parts">
+        <PropertyRef Name="CatergoeryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PartDBModelStoreContainer">
+    <EntitySet Name="BOMPart" EntityType="Self.BOMPart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Catergoery" EntityType="Self.Catergoery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parts" EntityType="Self.Parts" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BOMPart__PartId__3B75D760" Association="Self.FK__BOMPart__PartId__3B75D760">
+      <End Role="Parts" EntitySet="Parts" />
+      <End Role="BOMPart" EntitySet="BOMPart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Parts__Catergoer__38996AB5" Association="Self.FK__Parts__Catergoer__38996AB5">
+      <End Role="Catergoery" EntitySet="Catergoery" />
+      <End Role="Parts" EntitySet="Parts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
