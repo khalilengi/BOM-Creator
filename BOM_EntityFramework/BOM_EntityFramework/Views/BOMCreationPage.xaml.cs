@@ -11,39 +11,40 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BOM_EntityFramework.Views
 {
     /// <summary>
-    /// Interaction logic for BOMCreationWindow.xaml
+    /// Interaction logic for BOMCreationPage.xaml
     /// </summary>
-    public partial class BOMCreationWindow : Window
+    public partial class BOMCreationPage : Page
     {
         PartDBEntities _db = new PartDBEntities();
         DataGrid dataGrid = new DataGrid();
         DataGrid dataGrid2 = new DataGrid();
         PartsViewModel parts;
-        public BOMCreationWindow()
+        public BOMCreationPage()
         {
             InitializeComponent();
             Load();
         }
-
+      
         private void Load()
         {
             parts = new PartsViewModel();
-           //var parts = new PartsViewModel();
+            //var parts = new PartsViewModel();
 
             PartsGrid.ItemsSource = _db.Parts.ToList();
             //dataGrid = PartsGrid;
-           // BOMGrid.ItemsSource = _db.Catergoeries.ToList();
+            // BOMGrid.ItemsSource = _db.Catergoeries.ToList();
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
             var part = PartsGrid.SelectedItem as Part;
-            var bomItemSource= BOMGrid.ItemsSource;
+            var bomItemSource = BOMGrid.ItemsSource;
             //List<ObservableBOMPart> bomCollection = new List<ObservableBOMPart>();;
             List<ObservableBOMPart> bomCollection = (List<ObservableBOMPart>)bomItemSource;
             parts.AddPartToBOM(part);
@@ -80,7 +81,7 @@ namespace BOM_EntityFramework.Views
         {
             var bomItemSource = BOMGrid.SelectedItem as ObservableBOMPart;
             //List<ObservableBOMPart> bomCollection = new List<ObservableBOMPart>();;
-           // List<ObservableBOMPart> bomCollection = (List<ObservableBOMPart>)bomItemSource; ;
+            // List<ObservableBOMPart> bomCollection = (List<ObservableBOMPart>)bomItemSource; ;
             parts.RemovePartToBOM(bomItemSource);
             BOMGrid.ItemsSource = null;
             BOMGrid.ItemsSource = parts.ObservableBOMPartsCollection;
@@ -94,6 +95,12 @@ namespace BOM_EntityFramework.Views
             {
                 parts.ExportBOMExcel();
             }
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+
+           // this.Close();
         }
     }
 }

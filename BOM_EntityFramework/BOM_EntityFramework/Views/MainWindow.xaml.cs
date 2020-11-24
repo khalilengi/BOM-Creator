@@ -70,10 +70,13 @@ namespace BOM_EntityFramework
 
         private void createBOMBtn_Click(object sender, RoutedEventArgs e)
         {
+            
             BOMCreationWindow Ipage = new BOMCreationWindow();
+            //BOMCreationPage Ipage = new BOMCreationPage();
             if (!isOpen)
             {
                 Ipage.ShowDialog();
+                //this.Content = Ipage;
                 isOpen = true;
             }
             //Ipage.Show();

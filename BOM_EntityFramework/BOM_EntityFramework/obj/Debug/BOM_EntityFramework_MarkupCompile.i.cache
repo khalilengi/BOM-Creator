@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\deno.brockert\Documents\BOM_Creator\BOM-Creator\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\
 BOM_EntityFramework
 none
 false
 DEBUG;TRACE
-C:\Users\deno.brockert\Documents\BOM_Creator\BOM-Creator\BOM_EntityFramework\BOM_EntityFramework\App.xaml
-4-401851709
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\App.xaml
+51671930999
 2-1560107453
-19-1537360417
-24-502231206
-Views\AddPartWindow.xaml;Views\BOMCreationWindow.xaml;Views\MainWindow.xaml;Views\UpdatePartWindow.xaml;
+201905206086
+24770560912
+Views\AddPartWindow.xaml;Views\BOMCreationPage.xaml;Views\BOMCreationWindow.xaml;Views\MainWindow.xaml;Views\UpdatePartWindow.xaml;
 
-True
+False
 

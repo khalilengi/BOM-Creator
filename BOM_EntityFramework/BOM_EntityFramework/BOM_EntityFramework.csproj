@@ -68,6 +68,9 @@
     </ApplicationDefinition>
     <Compile Include="Models\ObservableBOMPart.cs" />
     <Compile Include="ViewModels\CategoeryViewModel.cs" />
+    <Compile Include="Views\BOMCreationPage.xaml.cs">
+      <DependentUpon>BOMCreationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BOMCreationWindow.xaml.cs">
       <DependentUpon>BOMCreationWindow.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,10 @@
       <DependentUpon>UpdatePartWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AddPartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BOMCreationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

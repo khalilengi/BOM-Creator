@@ -7,7 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
-
+using System.Windows;
+using System.IO;
 
 namespace BOM_EntityFramework.ViewModels
 {
@@ -81,6 +82,39 @@ namespace BOM_EntityFramework.ViewModels
             }
         }
 
+        private string _reportTitle;
+        public string ReportTitle
+        {
+            get { return _reportTitle; }
+            set
+            {
+                _reportTitle = value;
+                // NotifyPropertyChanged();
+                OnPropertyChanged("ReportTitle");
+            }
+        }
+        private string _directoryPath;
+        public string DirectoryPath
+        {
+            get { return _directoryPath; }
+            set
+            {
+                _directoryPath = value;
+                //NotifyPropertyChanged();
+                OnPropertyChanged("DirectoryPath");
+            }
+        }
+        private string _path;
+        public string Path
+        {
+            get { return _path; }
+            set
+            {
+                _path = value;
+                //NotifyPropertyChanged();
+                OnPropertyChanged("Path");
+            }
+        }
 
 
         public void GetBOMParts()
@@ -142,11 +176,12 @@ namespace BOM_EntityFramework.ViewModels
             string directoryPath = @"C:\Users\Public\Documents";
             string date = DateTime.Now.ToShortDateString();
             string time = DateTime.Now.ToShortTimeString();
-            string BOM = _jobNumber+"_Electrical_BOM_" + date + "_" + time;
+            string BOM = _jobNumber + "_Electrical_BOM_" + date + "_" + time;
             BOM = BOM.Replace('/', '.');
             BOM = BOM.Replace(':', '.');
-            string path = directoryPath + $"\\{BOM}_report.xlsx";
+            string path = DirectoryPath + $"\\{BOM}_Report.xlsx";
             var splitTitle = BOM.Split('_');
+
             Excel = new Microsoft.Office.Interop.Excel.Application();
             Workbook workBook = Excel.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
 
@@ -186,7 +221,7 @@ namespace BOM_EntityFramework.ViewModels
             DisplayTitle(workSheet, rowNum, colNum, "Link");
             colNum++;
             
-            rowNum++;
+            rowNum+=2;
 
             foreach (var item in ObservableBOMPartsCollection)
             {
@@ -305,8 +340,186 @@ namespace BOM_EntityFramework.ViewModels
 
         }
 
-        
+
         #endregion
 
+        public DirectoryReturn CheckForDirectory(string type)
+        {
+            string directoryPath = @"C:\Users\Public\Documents";
+            string date = DateTime.Now.ToShortDateString();
+            string time = DateTime.Now.ToShortTimeString();
+            string BOM = _jobNumber + "_Electrical_BOM_" + date + "_" + time;
+            BOM = BOM.Replace('/', '.');
+            BOM = BOM.Replace(':', '.');
+            string path = directoryPath + $"\\{BOM}_Report.xlsx";
+            var splitTitle = BOM.Split('_');
+            ReportTitle =BOM;
+
+            DirectoryReturn ReturnInfo;
+            bool IsAvailable = false;
+            bool canContinue = true;
+            char[] noNoCharacters = { '*', '[', ']', '?', '|', ':', '<', '>' };
+            if (ReportTitle == "")
+            {
+                string user = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+                string[] username = user.Split('\\');
+                ReportTitle = username[1] + "_" + DateTime.Now.ToShortDateString() + "_" + DateTime.Now.ToLongTimeString();
+                ReportTitle = ReportTitle.Replace('/', '.');
+                ReportTitle = ReportTitle.Replace(':', '.');
+            }
+            else
+            {
+                ReportTitle = ReportTitle.Replace('/', '_');
+
+
+            }
+
+            if (DirectoryPath == "" || DirectoryPath == null)
+            {
+                DirectoryPath = @"C:\Users\Public\Documents";
+            }
+
+            if (type == "PDF")
+            {
+                try
+                {
+                    string[] files = Directory.GetFiles(DirectoryPath, $"{ReportTitle}_REPORT.pdf", SearchOption.TopDirectoryOnly);
+                    Path = DirectoryPath + $"\\{ReportTitle}_REPORT.pdf";
+
+                    if (files.Contains(Path))
+                    {
+                       // Tools.Global.DisplayDialogBox(DialogBox.DialogType.OK, DialogBox.DialogImage.IMPORTANT, "There is a PDF with this name already. \nPlease change the name and export again.");
+                        MessageBox.Show("There is a PDF with this name already. \nPlease change the name and export again.");
+                        IsAvailable = false;
+                    }
+                    else
+                    {
+                        IsAvailable = true;
+                    }
+
+                }
+                catch
+                {
+                    IsAvailable = false;
+                }
+
+            }
+
+            if (type == "Excel")
+            {
+                try
+                {
+
+                    string[] files = Directory.GetFiles(DirectoryPath, $"{ReportTitle}_REPORT.xlsx", SearchOption.TopDirectoryOnly);
+                    Path = DirectoryPath + $"\\{ReportTitle}_REPORT.xlsx";
+
+                    if (files.Contains(Path))
+                    {
+                        //Tools.Global.DisplayDialogBox(DialogBox.DialogType.OK, DialogBox.DialogImage.IMPORTANT, "There is a excel file with this name already. \nPlease change the name and export again.");
+                        MessageBox.Show("There is a excel file with this name already. \nPlease change the name and export again.");
+                        IsAvailable = false;
+                    }
+                    else
+                    {
+                        IsAvailable = true;
+                    }
+
+                }
+                catch
+                {
+                    IsAvailable = false;
+                }
+            }
+            if (type == "Save")
+            {
+                try
+                {
+
+                    string[] files = Directory.GetFiles(DirectoryPath, $"{ReportTitle}_REPORT.xlsx", SearchOption.TopDirectoryOnly);
+                    Path = DirectoryPath + $"\\{ReportTitle}_REPORT.xlsx";
+
+                    if (files.Contains(Path))
+                    {
+                        MessageBox.Show("There is a excel file with this name already. \nPlease change the name and export again.");
+                        //Tools.Global.DisplayDialogBox(DialogBox.DialogType.OK, DialogBox.DialogImage.IMPORTANT, "There is a excel file with this name already. \nPlease change the name and export again.");
+                        IsAvailable = false;
+                        canContinue = false;
+                    }
+                    else
+                    {
+                        IsAvailable = true;
+                    }
+
+                }
+                catch
+                {
+                    IsAvailable = false;
+                    canContinue = false;
+
+                }
+                if (canContinue)
+                {
+                    try
+                    {
+                        string[] files = Directory.GetFiles(DirectoryPath, $"{ReportTitle}_REPORT.pdf", SearchOption.TopDirectoryOnly);
+                        Path = DirectoryPath + $"\\{ReportTitle}_REPORT.pdf";
+
+                        if (files.Contains(Path))
+                        {
+                            //  Tools.Global.DisplayDialogBox(DialogBox.DialogType.OK, DialogBox.DialogImage.IMPORTANT, "There is a PDF with this name already. \nPlease change the name and export again.");
+                            MessageBox.Show("There is a PDF with this name already. \nPlease change the name and export again.");
+                            IsAvailable = false;
+                        }
+                        else
+                        {
+                            IsAvailable = true;
+                        }
+
+                    }
+                    catch
+                    {
+                        IsAvailable = false;
+                    }
+                }
+
+            }
+            foreach (var item in noNoCharacters)
+            {
+                if (ReportTitle.Contains(item))
+                {
+                    //Tools.Global.DisplayDialogBox(DialogBox.DialogType.OK, DialogBox.DialogImage.IMPORTANT, "Couldn't save the file. \n-Make sure there is no file with the same name or the file with the same name is open.\n-Make sure the file name does not contain any of the following characters:  <  >  ?  [  ]  :  | or  *");
+                    MessageBox.Show("Couldn't save the file. \n-Make sure there is no file with the same name or the file with the same name is open.\n-Make sure the file name does not contain any of the following characters:  <  >  ?  [  ]  :  | or  *");
+                    IsAvailable = false;
+                    break;
+                }
+            }
+            ReturnInfo = new DirectoryReturn(ReportTitle, Path, IsAvailable);
+            return ReturnInfo;
+        }
+
+    }
+    public class DirectoryReturn
+    {
+        public string FileName { get; set; }
+        public string FilePath { get; set; }
+        public bool IsAvailable { get; set; }
+        public DirectoryReturn(string _fileName, string _filePath, bool _isAvailable)
+        {
+            FileName = _fileName;
+            FilePath = _filePath;
+            IsAvailable = _isAvailable;
+        }
+    }
+
+    public class ReportFields
+    {
+        public string FieldName { get; set; }
+        public bool IsChecked { get; set; }
+
+        public ReportFields(string _fieldName, bool _isChecked)
+        {
+            FieldName = _fieldName;
+            IsChecked = _isChecked;
+        }
     }
 }

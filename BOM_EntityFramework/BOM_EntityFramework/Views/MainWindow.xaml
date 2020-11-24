@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Margin="5"
         Background="AliceBlue"
-        Title="Parts Main" Height="450" Width="800">
+        Title="Parts Main" Height="750" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*"/>
