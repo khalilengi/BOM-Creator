@@ -51,14 +51,20 @@ namespace BOM_EntityFramework
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            int Id = (PartsGrid.SelectedItem as Part).Id;
-            Part deletePart = (from p in _db.Parts where p.Id == Id select p).Single();
-            //var part = PartsGrid.SelectedItem as Part;
-            //_db.Parts.Attach(part);
-            //_db.Parts.Remove(Part);
-            _db.Parts.Remove(deletePart);
-            _db.SaveChanges();
-            Load();
+            var delete = MessageBox.Show("Are you sure you want to delete\n this part?","Delete Part",MessageBoxButton.YesNo);
+
+            if (delete.ToString() == "Yes")
+            {
+                int Id = (PartsGrid.SelectedItem as Part).Id;
+                Part deletePart = (from p in _db.Parts where p.Id == Id select p).Single();
+                //var part = PartsGrid.SelectedItem as Part;
+                //_db.Parts.Attach(part);
+                //_db.Parts.Remove(Part);
+                _db.Parts.Remove(deletePart);
+                _db.SaveChanges();
+                Load();
+            }
+
 
         }
 

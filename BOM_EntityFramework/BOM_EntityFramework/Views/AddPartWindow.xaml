@@ -11,11 +11,11 @@
             <RowDefinition Height="43*"/>
             <RowDefinition Height="17*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="descTextBox" HorizontalAlignment="Left" Margin="136,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="119" Text="Text" />
+        <TextBox x:Name="descTextBox" HorizontalAlignment="Left" Margin="136,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="319" Text="Text" />
         <Label Content="Description:" HorizontalAlignment="Left" Margin="46,72,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="partNumTextBox" HorizontalAlignment="Left" Margin="136,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="119" Text="Text" />
+        <TextBox x:Name="partNumTextBox" HorizontalAlignment="Left" Margin="136,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="319" Text="Text" />
         <Label Content="Part Number:" HorizontalAlignment="Left" Margin="46,123,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="linkTextBox"  HorizontalAlignment="Left" Margin="136,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="119" Text="Text" />
+        <TextBox x:Name="linkTextBox"  HorizontalAlignment="Left" Margin="136,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="319" Text="Text" />
         <Label Content="Link:" HorizontalAlignment="Left" Margin="86,174,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="priceTextBox" HorizontalAlignment="Left" Margin="136,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="119" Text="Text" />
         <Label Content="Price:" HorizontalAlignment="Left" Margin="81,216,0,0" VerticalAlignment="Top"/>

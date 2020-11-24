@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="Update Part" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="DescTB" HorizontalAlignment="Left" Margin="136,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="119"  />
+        <TextBox x:Name="DescTB" HorizontalAlignment="Left" Margin="136,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="36" Width="319"  />
         <Label Content="Description:" HorizontalAlignment="Left" Margin="46,72,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="partNumTB" HorizontalAlignment="Left" Margin="136,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="119"  />
+        <TextBox x:Name="partNumTB" HorizontalAlignment="Left" Margin="136,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="319"  />
         <Label Content="Part Number:" HorizontalAlignment="Left" Margin="46,123,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="linkTB" HorizontalAlignment="Left" Margin="136,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="119" />
+        <TextBox x:Name="linkTB" HorizontalAlignment="Left" Margin="136,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="319" />
         <Label Content="Link:" HorizontalAlignment="Left" Margin="86,174,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="priceTB" HorizontalAlignment="Left" Margin="136,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="119"  />
         <Label Content="Price:" HorizontalAlignment="Left" Margin="81,216,0,0" VerticalAlignment="Top"/>
