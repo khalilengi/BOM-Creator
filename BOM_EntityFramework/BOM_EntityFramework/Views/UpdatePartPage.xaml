@@ -1,11 +1,13 @@
-﻿<Window x:Class="BOM_EntityFramework.Views.UpdatePartWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BOM_EntityFramework.Views"
-        mc:Ignorable="d"
-        Title="Update Part" Height="450" Width="800">
+﻿<Page x:Class="BOM_EntityFramework.Views.UpdatePartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BOM_EntityFramework.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UpdatePartPage">
+
     <Grid>
         <TextBox x:Name="DescTB" HorizontalAlignment="Left" Margin="136,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="36" Width="319"  />
         <Label Content="Description:" HorizontalAlignment="Left" Margin="46,72,0,0" VerticalAlignment="Top"/>
@@ -17,8 +19,8 @@
         <Label Content="Price:" HorizontalAlignment="Left" Margin="81,216,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="supplierTB" HorizontalAlignment="Left" Margin="601,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="119" />
         <Label Content="Supplier:" HorizontalAlignment="Left" Margin="511,123,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="categoeryCB" HorizontalAlignment="Left" Margin="623,84,0,0" VerticalAlignment="Top"  MinWidth="120" Width="200"/>
+        <ComboBox x:Name="categoeryCB" HorizontalAlignment="Left" Margin="623,84,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Catergoery:" HorizontalAlignment="Left" Margin="497,80,0,0" VerticalAlignment="Top"/>
-        <Button Content="Update Part" HorizontalAlignment="Left" Margin="390,13.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="Update Part"  HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,110" Width="75" Click="Button_Click"/>
     </Grid>
-</Window>
+</Page>

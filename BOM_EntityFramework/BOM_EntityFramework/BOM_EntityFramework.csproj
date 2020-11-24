@@ -68,15 +68,35 @@
     </ApplicationDefinition>
     <Compile Include="Models\ObservableBOMPart.cs" />
     <Compile Include="ViewModels\CategoeryViewModel.cs" />
+    <Compile Include="Views\AddCategoeryPage.xaml.cs">
+      <DependentUpon>AddCategoeryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddPartPage.xaml.cs">
+      <DependentUpon>AddPartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BOMCreationPage.xaml.cs">
       <DependentUpon>BOMCreationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BOMCreationWindow.xaml.cs">
       <DependentUpon>BOMCreationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PartsHomePage.xaml.cs">
+      <DependentUpon>PartsHomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdatePartPage.xaml.cs">
+      <DependentUpon>UpdatePartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UpdatePartWindow.xaml.cs">
       <DependentUpon>UpdatePartWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddCategoeryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddPartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddPartWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,6 +147,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\PartsHomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdatePartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UpdatePartWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,6 +208,7 @@
       <DependentUpon>EntityModel.edmx</DependentUpon>
       <LastGenOutput>EntityModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="lightningbolt.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

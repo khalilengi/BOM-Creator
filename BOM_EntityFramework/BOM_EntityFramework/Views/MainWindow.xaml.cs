@@ -27,26 +27,32 @@ namespace BOM_EntityFramework
         public static DataGrid dataGrid;
         private int _categoeryNum;
         bool isOpen = false;
+        public static Frame frame;
        
         public MainWindow()
         {
+            Uri iconUri = new Uri("pack://application:,,,/lightningbolt.ico", UriKind.RelativeOrAbsolute);
+            this.Icon = BitmapFrame.Create(iconUri);
+
             InitializeComponent();
-            Load();
+            Main.Content = new PartsHomePage();
+            frame = Main;
+            //Load();
 
         }
         private void Load()
         {
             var parts = new PartsViewModel();
 
-             PartsGrid.ItemsSource = _db.Parts.ToList();
-            dataGrid = PartsGrid;
+            // PartsGrid.ItemsSource = _db.Parts.ToList();
+            //dataGrid = PartsGrid;
         }
 
         private void updateBtn_Click(object sender, RoutedEventArgs e)
         {
-            int Id = (PartsGrid.SelectedItem as Part).Id;
-            UpdatePartWindow Ipage = new UpdatePartWindow(Id);
-            Ipage.ShowDialog();
+            //int Id = (PartsGrid.SelectedItem as Part).Id;
+            //UpdatePartWindow Ipage = new UpdatePartWindow(Id);
+            //Ipage.ShowDialog();
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
@@ -55,14 +61,12 @@ namespace BOM_EntityFramework
 
             if (delete.ToString() == "Yes")
             {
-                int Id = (PartsGrid.SelectedItem as Part).Id;
-                Part deletePart = (from p in _db.Parts where p.Id == Id select p).Single();
-                //var part = PartsGrid.SelectedItem as Part;
-                //_db.Parts.Attach(part);
-                //_db.Parts.Remove(Part);
-                _db.Parts.Remove(deletePart);
-                _db.SaveChanges();
-                Load();
+                //int Id = (PartsGrid.SelectedItem as Part).Id;
+                //Part deletePart = (from p in _db.Parts where p.Id == Id select p).Single();
+               
+                //_db.Parts.Remove(deletePart);
+                //_db.SaveChanges();
+                //Load();
             }
 
 
@@ -70,27 +74,43 @@ namespace BOM_EntityFramework
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddPartWindow Ipage = new AddPartWindow();
-            Ipage.ShowDialog();
+            //AddPartWindow Ipage = new AddPartWindow();
+            //Ipage.ShowDialog();
+            Main.Content = new AddPartPage();
+            frame = Main;
+
         }
 
         private void createBOMBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            BOMCreationWindow Ipage = new BOMCreationWindow();
-            //BOMCreationPage Ipage = new BOMCreationPage();
-            if (!isOpen)
-            {
-                Ipage.ShowDialog();
-                //this.Content = Ipage;
-                isOpen = true;
-            }
-            //Ipage.Show();
+            Main.Content = new BOMCreationPage();
+            frame = Main;
+
+            //BOMCreationWindow Ipage = new BOMCreationWindow();
+            //if (!isOpen)
+            //{
+            //    Ipage.ShowDialog();
+            //    //this.Content = Ipage;
+            //    isOpen = true;
+            //}
         }
 
         private void SortListByCategoery_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void PartsMainBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new PartsHomePage();
+            frame = Main;
+
+        }
+
+        private void AddCatBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new AddCategoeryPage();
+            frame = Main;
         }
     }
 }

@@ -6,15 +6,22 @@
         xmlns:local="clr-namespace:BOM_EntityFramework"
         mc:Ignorable="d"
         Margin="5"
-        Background="AliceBlue"
-        Title="Parts Main" Height="750" Width="1200">
+        Background="AliceBlue" 
+        Title="BOM Creator and Parts Database Viewer" Height="750" Width="1200">
     <Grid>
-        <Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" >
+            <Button x:Name="PartsMainBtn" Content="Home" Width="auto" Margin="12,0,0,0" MinWidth="100" HorizontalAlignment="Center" Click="PartsMainBtn_Click" />
+            <Button x:Name="CreateBOMBtn" Content="Create BOM" Width="auto" Margin="12,0,0,0" MinWidth="100" HorizontalAlignment="Center" Click="createBOMBtn_Click" />
+            <Button x:Name="AddPartBtn" Content="Add Part" Width="auto" Margin="12,0,0,0" MinWidth="100"  HorizontalAlignment="Right" Click="addBtn_Click"/>
+            <Button x:Name="AddCatBtn" Content="Add Categoery" Width="auto" Margin="12,0,0,0" MinWidth="100"  HorizontalAlignment="Right" Click="AddCatBtn_Click"/>
+        </StackPanel>
+        <Frame x:Name="Main" NavigationUIVisibility="Hidden" Margin="0,35,0,0" />
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="0.25*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
-        <!--<DataGrid x:Name="PartsGrid" x:FieldModifier="public" AutoGenerateColumns="false" ItemsSource="{Binding PartsCollection}" Margin="5" Grid.Row="1"/>-->
+        --><!--<DataGrid x:Name="PartsGrid" x:FieldModifier="public" AutoGenerateColumns="false" ItemsSource="{Binding PartsCollection}" Margin="5" Grid.Row="1"/>--><!--
         <DataGrid x:Name="PartsGrid" x:FieldModifier="public" CanUserAddRows="False" AlternatingRowBackground="Beige" AutoGenerateColumns="false"  ColumnWidth="*" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
@@ -77,6 +84,6 @@
                     <TextBlock TextAlignment="Center">Unused<LineBreak/>BTN</TextBlock>
                 </Button>
             </StackPanel>
-        </Grid>
+        </Grid>-->
     </Grid>
 </Window>

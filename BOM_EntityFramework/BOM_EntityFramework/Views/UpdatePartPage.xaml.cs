@@ -16,13 +16,13 @@ using System.Windows.Shapes;
 namespace BOM_EntityFramework.Views
 {
     /// <summary>
-    /// Interaction logic for UpdatePartWindow.xaml
+    /// Interaction logic for UpdatePartPage.xaml
     /// </summary>
-    public partial class UpdatePartWindow : Window
+    public partial class UpdatePartPage : Page
     {
         PartDBEntities _db = new PartDBEntities();
         int Id;
-        public UpdatePartWindow(int partId)
+        public UpdatePartPage(int partId)
         {
             InitializeComponent();
             Load(partId);
@@ -38,13 +38,22 @@ namespace BOM_EntityFramework.Views
             supplierTB.Text = updatePart.Supplier;
             priceTB.Text = updatePart.Price;
 
+            var categoery = _db.Catergoeries.ToList();
+            categoery.Add(new Catergoery()
+            {
+                Description = ""
+            });
+            List<string> categoeryNames = categoery.Select(c => c.Name).ToList();
+            categoeryCB.ItemsSource = categoeryNames;
+            categoeryCB.SelectedItem = categoeryNames.Where(c => c == "");
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
             int i = 1;
-            if ((string)categoeryCB.SelectedItem != "")
+            if ((string)categoeryCB.SelectedItem != "" && (string)categoeryCB.SelectedItem != null)
             {
                 var categoery = _db.Catergoeries.ToList();
                 i = categoery.First(c => c.Name == (string)categoeryCB.SelectedItem).Id;
@@ -59,9 +68,8 @@ namespace BOM_EntityFramework.Views
             updatePart.CatergoeryId = i;
 
             _db.SaveChanges();
-            //MainWindow.dataGrid.ItemsSource = _db.Parts.ToList();
             MainWindow.frame.Content = new PartsHomePage();
-            this.Hide();
+       
         }
     }
 }

@@ -81,3 +81,11 @@ C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFrame
 C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\BOM_EntityFramework.pdb
 C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\BOMCreationPage.g.cs
 C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\BOMCreationPage.baml
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\AddPartPage.g.cs
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\PartsHomePage.g.cs
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\AddPartPage.baml
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\PartsHomePage.baml
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\UpdatePartPage.g.cs
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\UpdatePartPage.baml
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\AddCategoeryPage.g.cs
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\AddCategoeryPage.baml
