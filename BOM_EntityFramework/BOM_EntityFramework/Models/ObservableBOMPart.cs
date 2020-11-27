@@ -73,15 +73,26 @@ namespace BOM_EntityFramework
                 OnPropertyChanged("Price");
             }
         }
+        private string _link;
+        public string Link
+        {
+            get { return _link; }
+            set
+            {
+                _link = value;
+                OnPropertyChanged("Link");
+            }
+        }
 
-        public ObservableBOMPart(int _partId, string _description, string _partNumber, string _supplier, string _price)
+        public ObservableBOMPart(int _partId, string _description, string _partNumber, string _supplier, string _price, string _link)
         {
             PartId = _partId;
             Description = _description;
             PartNumber = _partNumber;
             Supplier = _supplier;
             Price = _price;
-            Quantity = 1; 
+            Quantity = 1;
+            Link = _link;
         }
     }
 }

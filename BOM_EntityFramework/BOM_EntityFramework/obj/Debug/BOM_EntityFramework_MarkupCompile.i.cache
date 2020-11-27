@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\App.xaml
-9-837356212
+10906459966
 2-1560107453
-24-997282968
+25-1383524499
 24770560912
-Views\AddCategoeryPage.xaml;Views\AddPartPage.xaml;Views\AddPartWindow.xaml;Views\BOMCreationPage.xaml;Views\BOMCreationWindow.xaml;Views\MainWindow.xaml;Views\PartsHomePage.xaml;Views\UpdatePartPage.xaml;Views\UpdatePartWindow.xaml;
+Views\AddCategoeryPage.xaml;Views\AddPartPage.xaml;Views\AddPartWindow.xaml;Views\BOMCreationPage.xaml;Views\BOMCreationWindow.xaml;Views\MainWindow.xaml;Views\PartsHomePage.xaml;Views\UpdatePartPage.xaml;Views\UpdatePartWindow.xaml;Views\ViewBOMPage.xaml;
 
-False
+True
 

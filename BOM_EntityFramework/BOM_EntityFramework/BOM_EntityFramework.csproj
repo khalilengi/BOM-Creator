@@ -89,6 +89,9 @@
     <Compile Include="Views\UpdatePartWindow.xaml.cs">
       <DependentUpon>UpdatePartWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewBOMPage.xaml.cs">
+      <DependentUpon>ViewBOMPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\AddCategoeryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UpdatePartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewBOMPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -89,3 +89,5 @@ C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFrame
 C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\UpdatePartPage.baml
 C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\AddCategoeryPage.g.cs
 C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\AddCategoeryPage.baml
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\ViewBOMPage.g.cs
+C:\Users\deno.brockert\Documents\BOM-Creates\BOM_EntityFramework\BOM_EntityFramework\obj\Debug\Views\ViewBOMPage.baml

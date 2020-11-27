@@ -90,10 +90,19 @@ namespace BOM_EntityFramework.Views
         private void ExportBtn_Click(object sender, RoutedEventArgs e)
         {
             parts.JobNumber = JobNumberTB.Text as string;
-            DirectoryReturn directoryReturn = parts.CheckForDirectory("Excel");
-            if (directoryReturn.IsAvailable)
+            if (parts.JobNumber != null && parts.JobNumber != "")
             {
-                parts.ExportBOMExcel();
+                DirectoryReturn directoryReturn = parts.CheckForDirectory("Excel");
+                if (directoryReturn.IsAvailable)
+                {
+                    parts.ExportBOMExcel();
+                }
+            }
+            
+            else
+            {
+                MessageBox.Show($"Please enter a job number in Job Number textbox\nand try to save and export again");
+
             }
         }
 
@@ -101,6 +110,42 @@ namespace BOM_EntityFramework.Views
         {
 
            // this.Close();
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+            parts.JobNumber = JobNumberTB.Text as string;
+            if (parts.JobNumber != null && parts.JobNumber != "")
+            {
+                parts.SaveBOM();
+                MessageBox.Show($"{parts.JobNumber} BOM is save to database");
+            }
+            else
+            {
+                MessageBox.Show($"Please enter a job number in Job Number textbox\nand try to save again");
+                    
+            }
+        }
+
+        private void SaveExportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            parts.JobNumber = JobNumberTB.Text as string;
+
+            if (parts.JobNumber != null && parts.JobNumber != "")
+            {
+                DirectoryReturn directoryReturn = parts.CheckForDirectory("Excel");
+                if (directoryReturn.IsAvailable)
+                {
+                    parts.SaveBOM();
+                    parts.ExportBOMExcel();
+                }
+            }
+            else
+            {
+                MessageBox.Show($"Please enter a job number in Job Number textbox\nand try to save and export again");
+
+            }
         }
     }
 }

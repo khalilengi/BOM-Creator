@@ -112,5 +112,11 @@ namespace BOM_EntityFramework
             Main.Content = new AddCategoeryPage();
             frame = Main;
         }
+
+        private void ViewBOMBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new ViewBOMPage();
+            frame = Main;
+        }
     }
 }

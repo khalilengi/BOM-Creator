@@ -48,17 +48,6 @@ namespace BOM_EntityFramework.ViewModels
                 // OnPropertyChanged("PartsCollection");
             }
         }
-        public void GetParts()
-        {
-            //var query = from a in context.Parts
-            //            select a;
-
-            //var partsList = context.Parts.ToList();
-            _partsCollection = context.Parts.ToList();
-
-            //_partsCollection = new ObservableCollection<Part>(partsList);
-            //_partsCollection = new ObservableCollection<Part>(query);
-        }
 
         private string _jobNumber;
         public string JobNumber
@@ -116,6 +105,29 @@ namespace BOM_EntityFramework.ViewModels
             }
         }
 
+        private List<string> _jobNumberCollection;
+        public List<string> JobNumberCollection
+        {
+            get { return _jobNumberCollection; }
+            set
+            {
+                _jobNumberCollection = value;
+                OnPropertyChanged("JobNumberCollection");
+            }
+        }
+
+        public void GetParts()
+        {
+            //var query = from a in context.Parts
+            //            select a;
+
+            //var partsList = context.Parts.ToList();
+            _partsCollection = context.Parts.ToList();
+
+            //_partsCollection = new ObservableCollection<Part>(partsList);
+            //_partsCollection = new ObservableCollection<Part>(query);
+        }
+
 
         public void GetBOMParts()
         {
@@ -134,7 +146,7 @@ namespace BOM_EntityFramework.ViewModels
             {
                 _observableBOMPartsCollection = new List<ObservableBOMPart>();
             }
-            ObservableBOMPart addedPart = new ObservableBOMPart(part.Id, part.Description, part.PartNumber, part.Supplier, part.Price);
+            ObservableBOMPart addedPart = new ObservableBOMPart(part.Id, part.Description, part.PartNumber, part.Supplier, part.Price, part.Link);
             try
             {
                 _observableBOMPartsCollection.Add(addedPart);
@@ -167,7 +179,61 @@ namespace BOM_EntityFramework.ViewModels
             }
         }
 
+      public void SaveBOM()
+        {
+            DateTime dateNow = DateTime.Today;
+            if (_observableBOMPartsCollection !=null && _observableBOMPartsCollection.Count > 0)
+            {
+                foreach (var part in _observableBOMPartsCollection)
+                {
+                    BOMPart newBOMPart = new BOMPart()
+                    {
+                        JobNumber = _jobNumber,
+                        PartId = part.PartId,
+                        Quantity = part.Quantity,
+                        DateCreated = dateNow
 
+                    };
+                    context.BOMParts.Add(newBOMPart);
+                }
+                context.SaveChanges();
+            }
+            else if (_observableBOMPartsCollection.Count < 1)
+            {
+                MessageBox.Show("There are no parts added to the BOM.\nPlease add parts and try again.");
+            }
+        }
+
+        public void GetJobNumbers()
+        {
+            GetBOMParts();
+            JobNumberCollection = new List<string>();
+            string lastJobNumber = "";
+            foreach (var item in BOMPartCollection)
+            {
+                if (lastJobNumber != item.JobNumber)
+                {
+                    _jobNumberCollection.Add(item.JobNumber);
+                    lastJobNumber = item.JobNumber;
+                }  
+            }
+        }
+
+        public void ViewBOM(string JobNumber)
+        {
+            ObservableBOMPartsCollection = new List<ObservableBOMPart>();
+            GetParts();
+            GetBOMParts();
+            var jobNumberParts = BOMPartCollection.Where(j => j.JobNumber == JobNumber);
+            foreach (var item in jobNumberParts)
+            {
+                var part = PartsCollection.Where(p => p.Id == item.PartId).FirstOrDefault();
+                ObservableBOMPart bomPart = new ObservableBOMPart(item.PartId, part.Description, part.PartNumber, part.Supplier, part.PartNumber, part.Link);
+                ObservableBOMPartsCollection.Add(bomPart);
+
+            }
+
+        }
 
         public void ExportBOMExcel()
         {
@@ -238,8 +304,9 @@ namespace BOM_EntityFramework.ViewModels
                 colNum++;
                 DisplayData(workSheet, rowNum, colNum, item.Supplier);
                 colNum++;
-                string link = _partsCollection.First(p => p.PartNumber == item.PartNumber).Link;
-                DisplayData(workSheet, rowNum, colNum, link);
+                //string link = _partsCollection.First(p => p.PartNumber == item.PartNumber).Link;
+                //DisplayData(workSheet, rowNum, colNum, link);
+                DisplayData(workSheet, rowNum, colNum, item.Link);
                 //colNum++;
              
                 furthestCol = colNum;
