@@ -61,7 +61,7 @@
                     </Button>-->
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="2" ShowGridLines="True">
+            <Grid Grid.Row="2" ShowGridLines="False">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
