@@ -7,7 +7,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewBOMPage">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
 
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,7 +23,7 @@
         </Grid.RowDefinitions>
         <Label Content="BOMs:" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="5,0,0,0"/>
         <Button x:Name="ViewBOMBtn" Content="View BOM" HorizontalAlignment="Right" Click="ViewBOMBtn_Click" Margin="0,5,5,0"/>
-        <ListBox x:Name="JobNumberListBox" Grid.Row="1" Margin="5,5,5,5" ItemsSource="{Binding JobNumberCollection}"> 
+        <ListBox x:Name="JobNumberListBox" Grid.Row="1" Margin="5,5,5,5" ItemsSource="{Binding JobNumberCollection}" MouseDoubleClick="JobNumberListBox_MouseDoubleClick"> 
             
         </ListBox>
 
@@ -34,7 +37,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="ExportBtn" Height="auto" Width="100" Margin="5,10,0,10" Grid.Row="2" Grid.Column="1" Click="ExportBtn_Click" HorizontalAlignment="Left"  >
+        <Button x:Name="ExportBtn" Height="auto" Width="100" Margin="5,10,0,10" Grid.Row="2" Grid.Column="1" Click="ExportBtn_Click" HorizontalAlignment="Left" IsEnabled="{Binding Path=ExportViewBtnVisibility, Converter={StaticResource BoolToVisConverter}}" >
             <TextBlock TextAlignment="Center" FontSize="15" FontWeight="DemiBold" FontFamily="Arial Bold">Export BOM</TextBlock>
         </Button>
     </Grid>

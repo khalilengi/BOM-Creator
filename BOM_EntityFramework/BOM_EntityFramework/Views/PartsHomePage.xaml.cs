@@ -25,6 +25,8 @@ namespace BOM_EntityFramework.Views
         public static DataGrid dataGrid;
         private int _categoeryNum;
         bool isOpen = false;
+        PartsViewModel parts;
+        private string lastCategory = "";
 
         public PartsHomePage()
         {
@@ -34,10 +36,13 @@ namespace BOM_EntityFramework.Views
         
         private void Load()
         {
-            var parts = new PartsViewModel();
-
+            parts = new PartsViewModel();
+            parts.GetCategoryNames();
+            parts.CatergoryNameCollection.Add("Show All");
+            SortCategoryComboBox.ItemsSource = parts.CatergoryNameCollection;
             PartsGrid.ItemsSource = _db.Parts.ToList();
             dataGrid = PartsGrid;
+            
         }
 
         private void updateBtn_Click(object sender, RoutedEventArgs e)
@@ -89,7 +94,24 @@ namespace BOM_EntityFramework.Views
 
         private void SortListByCategoery_Click(object sender, RoutedEventArgs e)
         {
+            string selectedCategory = SortCategoryComboBox.SelectedItem as string;
+            if (selectedCategory != null)
+            {
+                if (selectedCategory != lastCategory)
+                {
 
+
+                    parts.GetParts();
+                    if (selectedCategory != "" && selectedCategory != "Show All")
+                    {
+                        int id = parts.CategoryCollection.FirstOrDefault(c => c.Name == selectedCategory).Id;
+                        parts.PartsCollection = parts.PartsCollection.Where(c => c.CatergoeryId == id).ToList();
+
+                    }
+                }
+                PartsGrid.ItemsSource = parts.PartsCollection;
+                dataGrid = PartsGrid;
+            }
         }
     }
 }

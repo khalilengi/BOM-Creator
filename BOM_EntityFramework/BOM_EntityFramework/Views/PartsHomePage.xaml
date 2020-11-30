@@ -23,7 +23,7 @@
                     <DataGridTextColumn Header="Part Number" Binding="{Binding PartNumber}"/>
                     <DataGridTextColumn Header="Link" Binding="{Binding Link}"/>
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
-                    <DataGridTextColumn Header="Catergoery" Binding="{Binding CatergoeryId}"/>
+                    <DataGridTextColumn Header="Category Id" Binding="{Binding CatergoeryId}"/>
                     <DataGridTextColumn Header="Supplier" Binding="{Binding Supplier}"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.HeaderTemplate>
@@ -71,8 +71,9 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
                     <Button Width="100" Height="auto" x:Name="SortListByCategoery" Click="SortListByCategoery_Click"  >
-                        <TextBlock TextAlignment="Center">Sort<LineBreak/>List</TextBlock>
+                        <TextBlock TextAlignment="Center">Sort List By<LineBreak/>Selected Category</TextBlock>
                     </Button>
+                    <ComboBox x:Name="SortCategoryComboBox" ItemsSource="{Binding CatergoryNameCollection}" Margin="5,5,5,5"/>
                 </StackPanel>
                 <StackPanel Grid.Column="4">
                     <Button Width="100" Height="auto" >

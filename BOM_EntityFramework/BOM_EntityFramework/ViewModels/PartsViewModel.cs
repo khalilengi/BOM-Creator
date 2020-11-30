@@ -12,10 +12,10 @@ using System.IO;
 
 namespace BOM_EntityFramework.ViewModels
 {
-    class PartsViewModel  : NotifyPropertyBase
+    class PartsViewModel : NotifyPropertyBase
     {
         PartDBEntities context = new PartDBEntities();
-    
+
         Microsoft.Office.Interop.Excel.Application Excel;
         //private ObservableCollection<Part> _partsCollection;
         //public ObservableCollection<Part> PartsCollection
@@ -34,10 +34,10 @@ namespace BOM_EntityFramework.ViewModels
             set
             {
                 _partsCollection = value;
-               // OnPropertyChanged("PartsCollection");
+                // OnPropertyChanged("PartsCollection");
             }
         }
-       
+
         private List<BOMPart> _BOMPartCollection;
         public List<BOMPart> BOMPartCollection
         {
@@ -68,6 +68,17 @@ namespace BOM_EntityFramework.ViewModels
             {
                 _observableBOMPartsCollection = value;
                 OnPropertyChanged("ObservableBOMPartsCollection");
+            }
+        }
+
+        private List<Catergoery> _categoryCollection;
+        public List<Catergoery> CategoryCollection
+        {
+            get { return _categoryCollection; }
+            set
+            {
+                _categoryCollection = value;
+                OnPropertyChanged("CategoryCollection");
             }
         }
 
@@ -116,6 +127,28 @@ namespace BOM_EntityFramework.ViewModels
             }
         }
 
+        private List<string> _catergoryNameCollection;
+        public List<string> CatergoryNameCollection
+        {
+            get { return _catergoryNameCollection; }
+            set
+            {
+                _catergoryNameCollection = value;
+                OnPropertyChanged("CatergoryNameCollection");
+            }
+        }
+
+        private bool _exportViewBtnVisibility;
+        public bool ExportViewBtnVisibility
+        {
+            get { return _exportViewBtnVisibility; }
+            set
+            {
+                _exportViewBtnVisibility = value;
+                OnPropertyChanged("ExportViewBtnVisibility");
+            }
+        }
+
         public void GetParts()
         {
             //var query = from a in context.Parts
@@ -124,6 +157,7 @@ namespace BOM_EntityFramework.ViewModels
             //var partsList = context.Parts.ToList();
             _partsCollection = context.Parts.ToList();
 
+            _exportViewBtnVisibility = false;
             //_partsCollection = new ObservableCollection<Part>(partsList);
             //_partsCollection = new ObservableCollection<Part>(query);
         }
@@ -132,6 +166,21 @@ namespace BOM_EntityFramework.ViewModels
         public void GetBOMParts()
         {
             _BOMPartCollection = context.BOMParts.ToList();
+        }
+
+        public void GetCategoeries()
+        {
+            _categoryCollection = context.Catergoeries.ToList();
+        }
+
+        public void GetCategoryNames()
+        {
+            GetCategoeries();
+            _catergoryNameCollection = new List<string>();
+            foreach (var item in CategoryCollection)
+            {
+                _catergoryNameCollection.Add(item.Name);
+            }
         }
 
 
@@ -232,6 +281,7 @@ namespace BOM_EntityFramework.ViewModels
                 ObservableBOMPartsCollection.Add(bomPart);
 
             }
+            _exportViewBtnVisibility = true;
 
         }
 
