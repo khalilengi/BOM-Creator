@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BOM_EntityFramework.exe" size="108504">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BOM_EntityFramework.exe" size="96728">
       <assemblyIdentity name="BOM_EntityFramework" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>or3/JkHLvZ3GCVqvvob6GtmoB98huYb7OneuFqwQuck=</dsig:DigestValue>
+        <dsig:DigestValue>hKHb+srgVMNgYbEO9P3FSFnulRORy6FUe0iPp+O4MMI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -138,6 +138,17 @@ namespace BOM_EntityFramework.ViewModels
             }
         }
 
+        private List<string> _partNumberCollection;
+        public List<string> PartNumberCollection
+        {
+            get { return _partNumberCollection; }
+            set
+            {
+                _partNumberCollection = value;
+                OnPropertyChanged("PartNumberCollection");
+            }
+        }
+
         private bool _exportViewBtnVisibility;
         public bool ExportViewBtnVisibility
         {
@@ -181,6 +192,32 @@ namespace BOM_EntityFramework.ViewModels
             {
                 _catergoryNameCollection.Add(item.Name);
             }
+        }
+
+        public void SortPartsByCategory(string category)
+        {
+            GetParts();
+            if (category != "" && category != "Show All")
+            {
+                int id = CategoryCollection.FirstOrDefault(c => c.Name == category).Id;
+                PartsCollection = PartsCollection.Where(c => c.CatergoeryId == id).ToList();
+            }
+        }
+        
+        public void GetPartNumberCollection()
+        {
+            GetParts();
+            PartNumberCollection = new List<string>();
+            foreach (var item in PartsCollection)
+            {
+                PartNumberCollection.Add(item.PartNumber);
+            }
+        }
+
+        public bool CheckIfPartNumberCreated(string jobNumber)
+        {
+            GetPartNumberCollection();
+            return PartNumberCollection.Contains(jobNumber);
         }
 
 

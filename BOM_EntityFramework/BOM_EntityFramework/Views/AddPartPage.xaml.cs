@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BOM_EntityFramework.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,29 +49,60 @@ namespace BOM_EntityFramework.Views
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            int i = 1;
-            if ((string)catergoeryComboBox.SelectedItem != "")
+            PartsViewModel parts = new PartsViewModel();
+            int i = 9;
+            try
             {
-                var categoery = _db.Catergoeries.ToList();
-                i = categoery.First(c => c.Name == (string)catergoeryComboBox.SelectedItem).Id;
+                if ((string)catergoeryComboBox.SelectedItem != "")
+                {
+                    var categoery = _db.Catergoeries.ToList();
+                    i = categoery.First(c => c.Name == (string)catergoeryComboBox.SelectedItem).Id;
+                }
             }
-            Part newPart = new Part()
+            catch (Exception ex)
             {
-                Description = descTextBox.Text,
-                PartNumber = partNumTextBox.Text,
-                Link = linkTextBox.Text,
-                Supplier = supplierTextBox.Text,
-                Price = priceTextBox.Text,
-                CatergoeryId = i
 
-            };
+                //throw;
+            }
+            if (descTextBox.Text == "")
+            {
+                MessageBox.Show("Please enter a description to this part before adding");
+            }
+            else if (partNumTextBox.Text == "")
+            {
+                MessageBox.Show("Please enter a part number to this part before adding");
 
-            _db.Parts.Add(newPart);
-            _db.SaveChanges();
-            MainWindow.frame.Content = new PartsHomePage();
-            MessageBox.Show($"Part Number {newPart.PartNumber} was added to the database");
-            //Load();
+            }
+            else
+            {
+                bool exists = parts.CheckIfPartNumberCreated(partNumTextBox.Text);
+                if (!exists)
+                {
 
+                    Part newPart = new Part()
+                    {
+                        Description = descTextBox.Text,
+                        PartNumber = partNumTextBox.Text,
+                        Link = linkTextBox.Text,
+                        Supplier = supplierTextBox.Text,
+                        Price = priceTextBox.Text,
+                        CatergoeryId = i
+
+                    };
+
+                    _db.Parts.Add(newPart);
+                    _db.SaveChanges();
+                    MainWindow.frame.Content = new PartsHomePage();
+                    MessageBox.Show($"Part Number {newPart.PartNumber} was added to the database");
+                }
+
+                else
+                {
+                    MessageBox.Show("There is already a part created with this part number.\nCheck parts list to update this part\nor change part number");
+                }
+                //Load();
+
+            }
         }
     }
 }

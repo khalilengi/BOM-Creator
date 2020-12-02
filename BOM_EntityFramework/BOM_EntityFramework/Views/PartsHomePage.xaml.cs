@@ -72,26 +72,7 @@ namespace BOM_EntityFramework.Views
 
         }
 
-        private void addBtn_Click(object sender, RoutedEventArgs e)
-        {
-            AddPartWindow Ipage = new AddPartWindow();
-            Ipage.ShowDialog();
-        }
-
-        private void createBOMBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-            BOMCreationWindow Ipage = new BOMCreationWindow();
-            //BOMCreationPage Ipage = new BOMCreationPage();
-            if (!isOpen)
-            {
-                Ipage.ShowDialog();
-                //this.Content = Ipage;
-                isOpen = true;
-            }
-            //Ipage.Show();
-        }
-
+        
         private void SortListByCategoery_Click(object sender, RoutedEventArgs e)
         {
             string selectedCategory = SortCategoryComboBox.SelectedItem as string;
@@ -99,15 +80,16 @@ namespace BOM_EntityFramework.Views
             {
                 if (selectedCategory != lastCategory)
                 {
+                    parts.SortPartsByCategory(selectedCategory);
 
 
-                    parts.GetParts();
-                    if (selectedCategory != "" && selectedCategory != "Show All")
-                    {
-                        int id = parts.CategoryCollection.FirstOrDefault(c => c.Name == selectedCategory).Id;
-                        parts.PartsCollection = parts.PartsCollection.Where(c => c.CatergoeryId == id).ToList();
+                    //parts.GetParts();
+                    //if (selectedCategory != "" && selectedCategory != "Show All")
+                    //{
+                    //    int id = parts.CategoryCollection.FirstOrDefault(c => c.Name == selectedCategory).Id;
+                    //    parts.PartsCollection = parts.PartsCollection.Where(c => c.CatergoeryId == id).ToList();
 
-                    }
+                    //}
                 }
                 PartsGrid.ItemsSource = parts.PartsCollection;
                 dataGrid = PartsGrid;

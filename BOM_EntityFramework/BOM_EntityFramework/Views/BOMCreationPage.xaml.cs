@@ -25,6 +25,8 @@ namespace BOM_EntityFramework.Views
         DataGrid dataGrid = new DataGrid();
         DataGrid dataGrid2 = new DataGrid();
         PartsViewModel parts;
+        private string lastCategory = "";
+
         public BOMCreationPage()
         {
             InitializeComponent();
@@ -37,8 +39,10 @@ namespace BOM_EntityFramework.Views
             //var parts = new PartsViewModel();
 
             PartsGrid.ItemsSource = _db.Parts.ToList();
-            //dataGrid = PartsGrid;
-            // BOMGrid.ItemsSource = _db.Catergoeries.ToList();
+
+            parts.GetCategoryNames();
+            parts.CatergoryNameCollection.Add("Show All");
+            SortCategoryComboBox.ItemsSource = parts.CatergoryNameCollection;
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
@@ -145,6 +149,28 @@ namespace BOM_EntityFramework.Views
             {
                 MessageBox.Show($"Please enter a job number in Job Number textbox\nand try to save and export again");
 
+            }
+        }
+
+        private void SortListByCategory_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedCategory = SortCategoryComboBox.SelectedItem as string;
+            if (selectedCategory != null)
+            {
+                if (selectedCategory != lastCategory)
+                {
+
+                    parts.SortPartsByCategory(selectedCategory);
+                    //parts.GetParts();
+                    //if (selectedCategory != "" && selectedCategory != "Show All")
+                    //{
+                    //    int id = parts.CategoryCollection.FirstOrDefault(c => c.Name == selectedCategory).Id;
+                    //    parts.PartsCollection = parts.PartsCollection.Where(c => c.CatergoeryId == id).ToList();
+
+                    //}
+                }
+                PartsGrid.ItemsSource = parts.PartsCollection;
+                //dataGrid = PartsGrid;
             }
         }
     }

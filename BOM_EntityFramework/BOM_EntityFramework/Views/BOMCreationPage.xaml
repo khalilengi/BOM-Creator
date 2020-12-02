@@ -12,13 +12,19 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.3*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
-       
+        <StackPanel Grid.Column="0" Width="200" HorizontalAlignment="Right" Margin="0,0,0,0">
+            <Button HorizontalAlignment="Right" Margin="0,0,5,0" Width="100" Height="auto" x:Name="SortListByCategory" Click="SortListByCategory_Click"  >
+                <TextBlock TextAlignment="Center">Sort List By<LineBreak/>Selected Category</TextBlock>
+            </Button>
+            <ComboBox x:Name="SortCategoryComboBox" ItemsSource="{Binding CatergoryNameCollection}" Margin="5,5,5,5"/>
+        </StackPanel>
+
         <!--<DataGrid x:Name="PartsGrid" x:FieldModifier="public" AutoGenerateColumns="false" ItemsSource="{Binding PartsCollection}" Margin="5" Grid.Row="1"/>-->
         <DataGrid x:Name="PartsGrid" x:FieldModifier="public" CanUserAddRows="False" AutoGenerateColumns="false"  ColumnWidth=".5*" Grid.Row="1" AlternatingRowBackground="Aquamarine">
             <DataGrid.Columns>
