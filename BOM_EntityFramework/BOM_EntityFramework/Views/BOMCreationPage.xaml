@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
        
         <!--<DataGrid x:Name="PartsGrid" x:FieldModifier="public" AutoGenerateColumns="false" ItemsSource="{Binding PartsCollection}" Margin="5" Grid.Row="1"/>-->
-        <DataGrid x:Name="PartsGrid" x:FieldModifier="public" CanUserAddRows="False" AutoGenerateColumns="false"  ColumnWidth=".5*" Grid.Row="1">
+        <DataGrid x:Name="PartsGrid" x:FieldModifier="public" CanUserAddRows="False" AutoGenerateColumns="false"  ColumnWidth=".5*" Grid.Row="1" AlternatingRowBackground="Aquamarine">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
                 <DataGridTextColumn Header="Part Number" Binding="{Binding PartNumber}"/>
@@ -59,7 +59,7 @@
         </Grid>
 
 
-        <DataGrid x:Name="BOMGrid"  CanUserAddRows="False" ItemsSource="{Binding ObservableBOMPartsCollection}" x:FieldModifier="public"   AutoGenerateColumns="false" ColumnWidth="*" Grid.Row="3">
+        <DataGrid x:Name="BOMGrid"  CanUserAddRows="False" ItemsSource="{Binding ObservableBOMPartsCollection}" x:FieldModifier="public"   AutoGenerateColumns="false" ColumnWidth="*" Grid.Row="3" AlternatingRowBackground="Aquamarine">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Quantity}"/>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>

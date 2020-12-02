@@ -24,7 +24,7 @@
         <Label Content="Description:"/>
         <TextBox x:Name="DescTB" MinWidth="200" MaxWidth="300" Height="90" TextWrapping="WrapWithOverflow"/>
         </TabPanel>
-        <Button Grid.Row="3" Content="Add Categoery" Width="100" Height="50" Name="addBtn" Click="addBtn_Click"/>
+        <Button Grid.Row="3" Content="Add Category" Width="100" Height="50" Name="addBtn" Click="addBtn_Click"/>
 
     </Grid>
 </Page>
