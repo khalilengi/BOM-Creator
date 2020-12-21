@@ -45,7 +45,8 @@ namespace BOM_EntityFramework.Views
             });
             List<string> categoeryNames = categoery.Select(c => c.Name).ToList();
             categoeryCB.ItemsSource = categoeryNames;
-            categoeryCB.SelectedItem = categoeryNames.Where(c => c == "");
+          //  categoeryCB.SelectedItem = categoeryNames.Where(c => c == "");
+            categoeryCB.SelectedItem = categoeryNames[(int)updatePart.CatergoeryId-1];
 
         }
 

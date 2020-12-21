@@ -26,7 +26,7 @@
         </StackPanel>
 
         <!--<DataGrid x:Name="PartsGrid" x:FieldModifier="public" AutoGenerateColumns="false" ItemsSource="{Binding PartsCollection}" Margin="5" Grid.Row="1"/>-->
-        <DataGrid x:Name="PartsGrid" x:FieldModifier="public" CanUserAddRows="False" AutoGenerateColumns="false"  ColumnWidth=".5*" Grid.Row="1" AlternatingRowBackground="Aquamarine">
+        <DataGrid x:Name="PartsGrid" x:FieldModifier="public" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="false"  ColumnWidth=".5*" Grid.Row="1" AlternatingRowBackground="Aquamarine">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
                 <DataGridTextColumn Header="Part Number" Binding="{Binding PartNumber}"/>

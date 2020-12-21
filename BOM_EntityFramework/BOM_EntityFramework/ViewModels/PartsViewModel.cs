@@ -159,6 +159,10 @@ namespace BOM_EntityFramework.ViewModels
                 OnPropertyChanged("ExportViewBtnVisibility");
             }
         }
+        public PartsViewModel()
+        {
+            GetParts();
+        }
 
         public void GetParts()
         {
@@ -221,10 +225,6 @@ namespace BOM_EntityFramework.ViewModels
         }
 
 
-        public PartsViewModel()
-        {
-            GetParts();
-        }
 
         public void AddPartToBOM(Part part)
         {
@@ -359,7 +359,7 @@ namespace BOM_EntityFramework.ViewModels
             DisplayTitle(workSheet, rowNum, colNum, "Date Created");
             colNum++;
             DisplayData(workSheet, rowNum, colNum, date);
-            rowNum++;
+            rowNum+=2;
             colNum=1;
             DisplayTitle(workSheet, rowNum, colNum, "Qty");
             colNum++;
@@ -374,7 +374,7 @@ namespace BOM_EntityFramework.ViewModels
             DisplayTitle(workSheet, rowNum, colNum, "Link");
             colNum++;
             
-            rowNum+=2;
+            rowNum++;
 
             foreach (var item in ObservableBOMPartsCollection)
             {
@@ -471,6 +471,10 @@ namespace BOM_EntityFramework.ViewModels
             {
                 //workSheet.Cells[rowNum, colB] = "";
                 workSheet.Cells[rowNum, colA] = "No";
+            }
+            else if (data.Contains("www.") || data.Contains(".com"))
+            {
+                workSheet.Hyperlinks.Add(workSheet.Cells[rowNum, colA], data, Type.Missing);
             }
             else
             {
