@@ -70,15 +70,18 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <Button Width="100" Height="auto" x:Name="SortListByCategoery" Click="SortListByCategoery_Click"  >
+                    <!--<Button Width="100" Height="auto" x:Name="SortListByCategoery" Click="SortListByCategoery_Click"  >
                         <TextBlock TextAlignment="Center">Sort List By<LineBreak/>Selected Category</TextBlock>
-                    </Button>
-                    <ComboBox x:Name="SortCategoryComboBox" ItemsSource="{Binding CatergoryNameCollection}" Margin="5,5,5,5"/>
+                    </Button>-->
+                    <Label FontStyle="Normal" FontWeight="Bold">
+                        <TextBlock TextDecorations="Underline">Sort by Category:</TextBlock>
+                    </Label>
+                    <ComboBox x:Name="SortCategoryComboBox" ItemsSource="{Binding CatergoryNameCollection}" SelectionChanged="SortCategoryComboBox_SelectionChanged" Margin="5,5,5,5"/>
                 </StackPanel>
                 <StackPanel Grid.Column="4">
-                    <Button Width="100" Height="auto" >
+                    <!--<Button Width="100" Height="auto" >
                         <TextBlock TextAlignment="Center">Unused<LineBreak/>BTN</TextBlock>
-                    </Button>
+                    </Button>-->
                 </StackPanel>
             </Grid>
         </Grid>

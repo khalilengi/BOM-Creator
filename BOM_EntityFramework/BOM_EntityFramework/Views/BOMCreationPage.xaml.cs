@@ -173,5 +173,22 @@ namespace BOM_EntityFramework.Views
                 //dataGrid = PartsGrid;
             }
         }
+
+        private void SortCategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedCategory = SortCategoryComboBox.SelectedItem as string;
+
+            if (selectedCategory != null)
+            {
+                if (selectedCategory != lastCategory)
+                {
+                    parts.SortPartsByCategory(selectedCategory);
+
+                }
+                PartsGrid.ItemsSource = parts.PartsCollection;
+                dataGrid = PartsGrid;
+            }
+
+        }
     }
 }

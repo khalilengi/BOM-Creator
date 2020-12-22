@@ -72,5 +72,10 @@ namespace BOM_EntityFramework.Views
             MainWindow.frame.Content = new PartsHomePage();
        
         }
+
+        private void Cancel_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.frame.Content = new PartsHomePage();
+        }
     }
 }

@@ -14,7 +14,7 @@
             <Button x:Name="ViewBOMBtn" Content="View BOM" Width="auto" Margin="12,0,0,0.2" MinWidth="100" HorizontalAlignment="Center" Click="ViewBOMBtn_Click" />
             <Button x:Name="CreateBOMBtn" Content="Create BOM" Width="auto" Margin="12,0,0,0.2" MinWidth="100" HorizontalAlignment="Center" Click="createBOMBtn_Click" />
             <Button x:Name="AddPartBtn" Content="Add Part" Width="auto" Margin="12,0,0,0" MinWidth="100"  HorizontalAlignment="Right" Click="addBtn_Click"/>
-            <Button x:Name="AddCatBtn" Content="Add Categoery" Width="auto" Margin="12,0,0,0" MinWidth="100"  HorizontalAlignment="Right" Click="AddCatBtn_Click"/>
+            <Button x:Name="AddCatBtn" Content="Add Category" Width="auto" Margin="12,0,0,0" MinWidth="100"  HorizontalAlignment="Right" Click="AddCatBtn_Click"/>
         </StackPanel>
         <Frame x:Name="Main" NavigationUIVisibility="Hidden" Margin="0,35,0,0" />
         <!--<Grid.RowDefinitions>

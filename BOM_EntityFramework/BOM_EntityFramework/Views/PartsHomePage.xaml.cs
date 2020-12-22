@@ -95,5 +95,31 @@ namespace BOM_EntityFramework.Views
                 dataGrid = PartsGrid;
             }
         }
+
+        private void SortCategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedCategory = SortCategoryComboBox.SelectedItem as string;
+
+            if (selectedCategory != null)
+            {
+                if (selectedCategory != lastCategory)
+                {
+                    parts.SortPartsByCategory(selectedCategory);
+
+
+                    //parts.GetParts();
+                    //if (selectedCategory != "" && selectedCategory != "Show All")
+                    //{
+                    //    int id = parts.CategoryCollection.FirstOrDefault(c => c.Name == selectedCategory).Id;
+                    //    parts.PartsCollection = parts.PartsCollection.Where(c => c.CatergoeryId == id).ToList();
+
+                    //}
+                }
+                PartsGrid.ItemsSource = parts.PartsCollection;
+                dataGrid = PartsGrid;
+            }
+
+        }
+
     }
 }

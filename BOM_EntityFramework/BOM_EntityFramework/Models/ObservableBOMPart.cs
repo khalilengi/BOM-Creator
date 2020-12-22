@@ -94,5 +94,16 @@ namespace BOM_EntityFramework
             Quantity = 1;
             Link = _link;
         }
+
+        public ObservableBOMPart(int _partId, string _description, string _partNumber, string _supplier, string _price, string _link, int _quantity)
+        {
+            PartId = _partId;
+            Description = _description;
+            PartNumber = _partNumber;
+            Supplier = _supplier;
+            Price = _price;
+            Quantity = _quantity;
+            Link = _link;
+        }
     }
 }

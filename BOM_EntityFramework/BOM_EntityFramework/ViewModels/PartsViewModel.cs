@@ -314,7 +314,10 @@ namespace BOM_EntityFramework.ViewModels
             foreach (var item in jobNumberParts)
             {
                 var part = PartsCollection.Where(p => p.Id == item.PartId).FirstOrDefault();
-                ObservableBOMPart bomPart = new ObservableBOMPart(item.PartId, part.Description, part.PartNumber, part.Supplier, part.PartNumber, part.Link);
+                ObservableBOMPart bomPart = new ObservableBOMPart(item.PartId, part.Description, part.PartNumber, part.Supplier, part.PartNumber, part.Link, item.Quantity);
+                //{
+                //};
+                //bomPart.Quantity = item.Quantity;
                 ObservableBOMPartsCollection.Add(bomPart);
 
             }
