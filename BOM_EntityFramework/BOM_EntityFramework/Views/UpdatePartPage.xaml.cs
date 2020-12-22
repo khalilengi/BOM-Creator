@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BOM_EntityFramework.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,9 @@ namespace BOM_EntityFramework.Views
     public partial class UpdatePartPage : Page
     {
         PartDBEntities _db = new PartDBEntities();
+        PartsViewModel partsObject = new PartsViewModel();
         int Id;
+        string currentPartNum;
         public UpdatePartPage(int partId)
         {
             InitializeComponent();
@@ -37,6 +40,8 @@ namespace BOM_EntityFramework.Views
             linkTB.Text = updatePart.Link;
             supplierTB.Text = updatePart.Supplier;
             priceTB.Text = updatePart.Price;
+
+            currentPartNum = updatePart.PartNumber;
 
             var categoery = _db.Catergoeries.ToList();
             categoery.Add(new Catergoery()
@@ -60,16 +65,24 @@ namespace BOM_EntityFramework.Views
                 i = categoery.First(c => c.Name == (string)categoeryCB.SelectedItem).Id;
             }
             Part updatePart = (from p in _db.Parts where p.Id == Id select p).Single();
-            updatePart.Link = linkTB.Text;
-            updatePart.PartNumber = partNumTB.Text;
-            updatePart.Description = DescTB.Text;
-            updatePart.Supplier = supplierTB.Text;
-            updatePart.Price = priceTB.Text;
+            if (partNumTB.Text == currentPartNum || !partsObject.CheckIfPartNumberCreated(partNumTB.Text))
+            {
+                updatePart.Link = linkTB.Text;
+                updatePart.PartNumber = partNumTB.Text;
+                updatePart.Description = DescTB.Text;
+                updatePart.Supplier = supplierTB.Text;
+                updatePart.Price = priceTB.Text;
 
-            updatePart.CatergoeryId = i;
+                updatePart.CatergoeryId = i;
 
-            _db.SaveChanges();
-            MainWindow.frame.Content = new PartsHomePage();
+                _db.SaveChanges();
+                MainWindow.frame.Content = new PartsHomePage();
+            }
+            else
+            {
+                MessageBox.Show($"{updatePart.PartNumber} is already used. Please update part with this part number\nor check part number is correct.");
+            }
+            
        
         }
 
